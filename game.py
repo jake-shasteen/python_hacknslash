@@ -1,3 +1,4 @@
+import sys
 from character import Character
 from monster import Dragon, Goblin, Troll
 
@@ -44,7 +45,7 @@ class Game:
             elif choice == 'r': #rest
                 self.player.rest()
             elif choice == 'q': #quit
-                quit() #exit program
+                sys.exit() #exit program
         else: #player did not choose an approved choice
             return self.player_turn() #loop back to choice
 
