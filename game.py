@@ -39,6 +39,8 @@ class Game:
                         print("The {} dodged out of the way of your {}!".format( self.monster.__class__.__name__, self.player.weapon ))
                     else: #hit
                         print("You hit the {} with your {}!".format( self.monster.__class__.__name__, self.player.weapon ))
+                        if self.player.leveled_up():
+                            self.monster.hit_points -= 1 # an extra damage if the player has leveled up!
                         self.monster.hit_points -= 1
                 else: #miss
                     print("You miss with your {}.".format( self.player.weapon ))
@@ -51,8 +53,8 @@ class Game:
 
     def cleanup( self ):
         if self.monster.hit_points <= 0:
-            self.player.experience += 1
-            print("You slew the {} and gained an experience!".format( self.monster.__class__.__name__ ))
+            self.player.experience += self.monster.experience
+            print("You slew the {} and gained in experience!".format( self.monster.__class__.__name__ ))
             self.monster = self.get_next_monster()
 
 
